@@ -6,6 +6,7 @@ import {RequestOptions, URLSearchParams, Jsonp, Response, RequestOptionsArgs} fr
 import {Observable} from  "rxjs/Observable";
 import "rxjs/add/operator/map";
 
+// 他のクラスでもHttpServiceを使えるように@Injectableを宣言
 @Injectable()
 export class HttpService {
 
@@ -24,7 +25,7 @@ export class HttpService {
     constructor(private jsonp: Jsonp) {
     }
 
-    //クラウドからツアー情報取得
+    //クラウドからツアー情報取得するメソッド
     getTourData(areaCode: string): Observable<any> {
         //接続設定
         let option = this.setParam(areaCode);
@@ -54,29 +55,26 @@ export class HttpService {
 
     //HTTPリクエストとレスポンス処理
     reqData(config: RequestOptions): Observable<any> {
-        return this.jsonp.request(config.url, config)
-            .map((response) => {
-                    let tourData;
-                    let obj = response.json();
-                    if (obj.results.error) {
-                        //Web APIリクエスト失敗
-                        let err = obj.results.error[0];
-                        tourData = {
-                            error: err.code,
-                            message: err.message
-                        }
-                    } else {
-                        //Web APIリクエスト成功
-                        let dataObj = obj.results.tour;
-                        tourData = {
-                            error: null,
-                            data: dataObj,
-                        };
-                    }
-                    console.dir(tourData);
-                    return tourData;
-                }
-            );
+      return this.jsonp.request(config.url, config).map((response) => {
+        let tourData;
+        let obj = response.json();
+        if (obj.results.error) {
+          //Web APIリクエスト失敗
+          let err = obj.results.error[0];
+          tourData = {
+            error: err.code,
+            message: err.message
+          }
+        } else {
+          //Web APIリクエスト成功
+          let dataObj = obj.results.tour;
+          tourData = {
+            error: null,
+            data: dataObj,
+          };
+        }
+        console.dir(tourData);
+        return tourData;
+      });
     };
-
 }
