@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { JsonpModule } from '@angular/http';
 import { HttpService } from './http.service';
-import { Ng2BootstrapModule} from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,9 +14,9 @@ import { Ng2BootstrapModule} from 'ng2-bootstrap/ng2-bootstrap';
     BrowserModule,
     FormsModule,
     JsonpModule,
-    Ng2BootstrapModule,
+    Ng2BootstrapModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

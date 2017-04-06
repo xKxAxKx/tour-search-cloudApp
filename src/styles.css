@@ -1,8 +1,8 @@
 /* bootstrap cssのインポート*/
-@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+/*@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");*/
 
 /* アニメーションアイコンCのSS インポート*/
-@import url("waitIcon.css");
+/*@import url("waitIcon.css");*/
 
 /*見やすさのために横幅を制限*/
 html {
@@ -19,10 +19,10 @@ body{
 }
 
 /*スライドインデックスアイコンを上部に表示*/
-ol.carousel-indicators{
+/*ol.carousel-indicators{
   top:10px !important;
-}
+}*/
 /*スライドインデックスアイコンの枠線を黒*/
-ol.carousel-indicators li{
+/*ol.carousel-indicators li{
   border-color: black !important;
-}
+}*/

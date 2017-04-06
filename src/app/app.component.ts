@@ -35,15 +35,6 @@ export class AppComponent implements OnInit {
     this.initBookmarks();
   }
 
-  // ブックマークを取得するメソッド
-  initBookmarks(){
-    let storeData = localStorage.getItem("bookmark");
-    if (storeData) {
-      this.bookmarks = JSON.parse(storeData);
-    } else {
-      this.bookmarks = {};
-    }
-  }
 
   //エリアメニュー選択をクリックした時のメソッド
   onAreaChange(index) {
@@ -62,6 +53,18 @@ export class AppComponent implements OnInit {
     //スクロール位置をリセット(一部のブラウザはタイマーから呼び出しが必要）
     setTimeout(scroll(0, 0), 1);
   }
+
+
+  // ブックマークを取得するメソッド
+  initBookmarks(){
+    let storeData = localStorage.getItem("bookmark");
+    if (storeData) {
+      this.bookmarks = JSON.parse(storeData);
+    } else {
+      this.bookmarks = {};
+    }
+  }
+
 
   //ブックマークボタンのクリック時
   onBookmarkClick(tourID, index) {
