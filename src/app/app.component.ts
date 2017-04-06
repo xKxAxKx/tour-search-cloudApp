@@ -31,6 +31,60 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     //クラウドからツアー情報取得
     this.getTour();
+    // 保存したブックマークを取得
+    this.initBookmarks();
+  }
+
+  // ブックマークを取得するメソッド
+  initBookmarks(){
+    let storeData = localStorage.getItem("bookmark");
+    if (storeData) {
+      this.bookmarks = JSON.parse(storeData);
+    } else {
+      this.bookmarks = {};
+    }
+  }
+
+  //エリアメニュー選択をクリックした時のメソッド
+  onAreaChange(index) {
+    let area = this.areas[index];
+    //ブックマーク選択時
+    if (area.code === "BOOKMARK") {
+      if (Object.keys(this.bookmarks).length === 0) {
+        alert("ブックマークが登録されていません");
+        return;
+      }
+      this.selectedData = Object.keys(this.bookmarks).map(key => this.bookmarks[key]);
+    } else {
+      //エリア名選択時
+      this.selectedData = area.data.data;
+    }
+    //スクロール位置をリセット(一部のブラウザはタイマーから呼び出しが必要）
+    setTimeout(scroll(0, 0), 1);
+  }
+
+  //ブックマークボタンのクリック時
+  onBookmarkClick(tourID, index) {
+    //登録が無い場合はブックマーク情報に追加
+    if (!this.isMarked(tourID)) {
+      //登録件数の確認
+      if (Object.keys(this.bookmarks).length === 10) {
+        return alert("Bookmarkは最大10件です");
+      }
+      //登録
+      this.bookmarks[tourID] = this.selectedData[index];
+    } else {
+      //登録済みの場合はブックマーク情報から削除
+      delete this.bookmarks[tourID];
+    }
+    //更新されたブックマーク情報の保存
+    localStorage.setItem(
+        "bookmarks", JSON.stringify(this.bookmarks));
+  }
+
+  //ブックマーク登録済み確認
+  isMarked(tourID) {
+    return this.bookmarks[tourID];
   }
 
   //3エリアのツアー情報を一括受信するメソッド
