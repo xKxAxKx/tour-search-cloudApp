@@ -1,6 +1,6 @@
-//ｰｰｰｰｰｰｰ-------------------
+//ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 // 通信処理
-//ｰｰｰｰｰｰｰ-------------------
+//ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 import {Injectable} from "@angular/core";
 import {RequestOptions, URLSearchParams, Jsonp, Response, RequestOptionsArgs} from "@angular/http";
 import {Observable} from  "rxjs/Observable";

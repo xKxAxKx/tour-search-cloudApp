@@ -1,5 +1,5 @@
-import {Component, Input, ViewChild} from "@angular/core";
-import {ModalDirective} from "ng2-bootstrap";
+import { Component, Input, ViewChild }  from '@angular/core';
+import { ModalDirective, ModalModule } from 'ng2-bootstrap';
 
 @Component({
     selector: "detail-dialog",
@@ -8,7 +8,7 @@ import {ModalDirective} from "ng2-bootstrap";
 })
 export class DetailComponent{
 
-    @Input() tourData;//親コンポーネントから受取る属性
+    @Input() tourData;//app.componentから受取る属性
     @ViewChild("lgModal") modalRef:ModalDirective;//Modalダイアログへの参照
 
     constructor() {
